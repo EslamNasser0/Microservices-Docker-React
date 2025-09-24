@@ -1,8 +1,8 @@
 FROM node:lts-alpine AS builder
 WORKDIR '/app'
-COPY ./package.json ./
+COPY ./client/package.json ./
 RUN npm install
-COPY . .
+COPY ./client .
 RUN npm run build
 
 FROM nginx
