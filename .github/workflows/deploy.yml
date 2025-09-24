@@ -1,4 +1,4 @@
-name: Microservices app CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -23,20 +23,23 @@ jobs:
       - name: Build and push client image
         uses: docker/build-push-action@v5
         with:
-          context: ./client
+          context: .
+          file: ./client/Dockerfile
           push: true
           tags: eslamnasser100/multi-client:latest
 
       - name: Build and push server image
         uses: docker/build-push-action@v5
         with:
-          context: ./server
+          context: .
+          file: ./server/Dockerfile
           push: true
           tags: eslamnasser100/multi-server:latest
 
       - name: Build and push worker image
         uses: docker/build-push-action@v5
         with:
-          context: ./worker
+          context: .
+          file: ./worker/Dockerfile
           push: true
           tags: eslamnasser100/multi-worker:latest
